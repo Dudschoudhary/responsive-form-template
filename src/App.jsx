@@ -3,6 +3,8 @@ import illustration from './assets/images/illustration-empty.svg';
 import { MdOutlineCurrencyPound } from "react-icons/md";
 import { MdPercent } from "react-icons/md";
 import calculator from './assets/images/icon-calculator.svg'
+import { useFormik } from 'formik'
+import { calcutaleSchemas } from './Schemas';
 
 
 // import './App.css'
@@ -15,12 +17,30 @@ function App() {
   };
 
   // Handle input changes
-  const handleChange = (e) => {
+  const handleChanges = (e) => {
     const inputValue = e.target.value.replace(/,/g, ""); // Remove existing commas
     if (!isNaN(inputValue)) { // Ensure it's a valid number
       setValue(inputValue);
     }
   };
+
+  const initialValues = {  //object
+    amount: "",     //value 
+    mortgage_term:"",
+    interest_rate:"",
+    radio:"",
+
+  }
+
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit, resetForm } = useFormik({   // use formik
+    initialValues: initialValues,
+    validationSchema:calcutaleSchemas,
+    onSubmit: (values) => {
+      console.log(values);
+      resetForm();
+    }
+  })
+  console.log(errors);
   return (
     <>
       <div className='main '>
@@ -28,7 +48,7 @@ function App() {
           <div className='container w-auto block sm:flex sm:mx-auto sm:justify-center sm:items-center  h-screen'>
             <div className='block sm:flex bg-white rounded-3xl'>
               <div className=' w-auto sm:w-[50%] p-5 '>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className='block sm:flex justify-between items-center'>
                     <h2 className='font-bold text-xl PlusJakartaSans-Bold text-[#182c37] mb-1 sm:mb-5 mt-3'>Mortgage Calculator</h2>
                     <p><a href="#" className='underline PlusJakartaSans-Medium text-sm text-[#7d8c90]'>ClearAll</a></p>
@@ -36,47 +56,63 @@ function App() {
                   <div className='space-y-2 mt-5 relative '>
                     <p className='text-[#7d8c90] text-sm PlusJakartaSans-Medium'>Mortgage Amount</p>
                     <div className='w-full border border-[#9eabb1] h-[45px] rounded py-1.5 px-5 focus-within:border-[#d8da2d]'>
-                      <input type="text" value={formatNumberWithCommas(value)} onChange={handleChange} className='absolute top-8 w-[210px] sm:w-auto outline-none rounded py-1 px-8 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                      <input type="text" name='amount' value={values.amount} onChange={handleChange} className='absolute top-8 w-[210px] sm:w-auto outline-none rounded py-1 px-8 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+
+                      {/* value={formatNumberWithCommas(value)} */}
                     </div>
-                    <div className='w-[39px] h-[42px] bg-[#e2f4fe] absolute top-[21px] left-[2px]'><MdOutlineCurrencyPound className='absolute top-3 left-2 text-[16px] PlusJakartaSans-Bold text-[#5a6e77]' /></div>
+                    {errors.amount && touched.amount ? (<p className='text-red-600'>{errors.amount}</p>):null}
+
+
+                    <div className='w-[39px] h-[42px] bg-[#e2f4fe] absolute top-[21px] left-[2px]'><MdOutlineCurrencyPound className='absolute top-3 left-2 text-[16px] PlusJakartaSans-Bold text-[#5a6e77]' />
+                    </div>
+
                   </div>
                   <div className='w-full block sm:flex sm:gap-5  '>
                     <div className='mt-5 relative'>
                       <p className='text-[#7d8c90] text-sm my-2 PlusJakartaSans-Medium'>Mortgage Term</p>
                       <div className='w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1 focus-within:border-[#d8da2d]'>
-                        <input type="text" className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                        <input type="text" name='mortgage_term' value={values.mortgage_term} onChange={handleChange
+                        } className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                      
+
                       </div>
+                      {errors.mortgage_term && touched.mortgage_term ? (<p className='text-red-600'>{errors.mortgage_term}</p>):null}
                       <div className='w-[65px] h-[42px] bg-[#e2f4fe] absolute top-[30px] sm:top-[37px] right-[2px]'><span className='absolute top-2 left-3 text-[16px] PlusJakartaSans-Bold text-[#5a6e77]'> years</span></div>
                     </div>
+
                     <div className='mt-5 relative'>
                       <p className='text-[#7d8c90] my-2 PlusJakartaSans-Medium text-sm'>Interest Rate</p>
                       <div className='w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1 focus-within:border-[#d8da2d]'>
-                        <input type="text" className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                        <input type="text" name='interest_rate' value={values.interest_rate} onChange={handleChange} className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                      
+
                       </div>
+                      {errors.interest_rate && touched.interest_rate ? (<p className='text-red-600'>{errors.interest_rate}</p>):null}
                       <div className='w-[39px] h-[42px] bg-[#e2f4fe] absolute top-[30px] sm:top-[37px] right-[2px]'><MdPercent className='absolute top-3 left-2 text-[16px] PlusJakartaSans-Bold text-[#5a6e77]' /></div>
                     </div>
                   </div>
+
                   <div className='space-y-3 mt-5'>
 
                     <p className='text-[#7d8c90] text-sm my-2 PlusJakartaSans-Medium'>Mortgage Type</p>
 
                     <div>
                       <div className='w-full border border-[#9eabb1] h-[45px] rounded py-1.5 px-5 relative'>
-                        <input type="radio" name='radio' className='absolute top-4 cursor-pointer ' />
+                        <input type="radio" name='radio' value={values.radio} onChange={handleChange} className='absolute top-4 cursor-pointer ' />
                         <span className='absolute top-2 left-12 font-bold text-base PlusJakartaSans-Bold text-[#182c37]'>Repayments</span>
                       </div>
 
                     </div>
                     <div>
                       <div className='w-full border border-[#9eabb1] h-[45px] rounded py-1.5 px-5 relative'>
-                        <input type="radio" name='radio' className='absolute top-4 cursor-pointer' />
+                        <input type="radio" name='radio' value={values.radio} onChange={handleChange} className='absolute top-4 cursor-pointer' />
                         <span className='absolute top-2 left-12 font-bold text-base PlusJakartaSans-Bold text-[#182c37]'>Interest Only</span>
                       </div>
                     </div>
                   </div>
                   <div className='relative sm:px-3'>
                     <button className=' w-full sm:w-[300px] bg-[#dbd92f] py-3 sm:py-2 text-sm sm:text-base font-bold rounded-full mt-4  cursor-pointer PlusJakartaSans-Bold text-[#182c37]'>Calculate Repayments</button>
-                    <img src={calculator} alt="calculator" className='absolute top-6 left-6 sm:left-10 w-5 sm:w-6' />
+                    <img src={calculator} alt="calculator" className='absolute top-7 sm:top-6 left-6 sm:left-10 w-5 sm:w-6' />
                   </div>
                 </form>
               </div>
