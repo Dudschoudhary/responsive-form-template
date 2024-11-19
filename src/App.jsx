@@ -75,7 +75,7 @@ function App() {
                     </div>
                   </div>
                   <div className='relative sm:px-3'>
-                    <button className=' w-full sm:w-[300px] bg-[#dbd92f] py-2 text-sm sm:text-base font-bold rounded-full mt-4  cursor-pointer PlusJakartaSans-Bold text-[#182c37]'>Calculate Repayments</button>
+                    <button className=' w-full sm:w-[300px] bg-[#dbd92f] py-3 sm:py-2 text-sm sm:text-base font-bold rounded-full mt-4  cursor-pointer PlusJakartaSans-Bold text-[#182c37]'>Calculate Repayments</button>
                     <img src={calculator} alt="calculator" className='absolute top-6 left-6 sm:left-10 w-5 sm:w-6' />
                   </div>
                 </form>
