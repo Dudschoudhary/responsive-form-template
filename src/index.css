@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "PlusJakartaSans-Bold";
+    src: url("../src/assets/fonts/Plus_Jakarta_Sans/PlusJakartaSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: "PlusJakartaSans-Medium";
+    src: url("../src/assets/fonts/Plus_Jakarta_Sans/PlusJakartaSans-Medium.ttf");
+}
+
+.PlusJakartaSans-Bold {
+    font-family: "PlusJakartaSans-Bold";
+}
+
+.PlusJakartaSans-Medium {
+    font-family: "PlusJakartaSans-Medium";
+}
