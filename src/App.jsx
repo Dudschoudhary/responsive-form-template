@@ -55,7 +55,7 @@ function App() {
                   </div>
                   <div className='space-y-2 mt-5 relative '>
                     <p className='text-[#7d8c90] text-sm PlusJakartaSans-Medium'>Mortgage Amount</p>
-                    <div className='w-full border border-[#9eabb1] h-[45px] rounded py-1.5 px-5 focus-within:border-[#d8da2d]'>
+                    <div className={`w-full border border-[#9eabb1] h-[45px] rounded py-1.5 px-5  ${errors.amount && touched.amount ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
                       <input type="text" name='amount' value={values.amount} onChange={handleChange} className='absolute top-8 w-[210px] sm:w-auto outline-none rounded py-1 px-8 PlusJakartaSans-Bold text-lg text-[#25323a]' />
 
                       {/* value={formatNumberWithCommas(value)} */}
@@ -63,32 +63,32 @@ function App() {
                     {errors.amount && touched.amount ? (<p className='text-red-600'>{errors.amount}</p>) : null}
 
 
-                    <div className='w-[39px] h-[42px] bg-[#e2f4fe] absolute top-[21px] left-[2px]'><MdOutlineCurrencyPound className='absolute top-3 left-2 text-[16px] PlusJakartaSans-Bold text-[#5a6e77]' />
+                    <div className={`w-[39px] h-[43px] bg-[#e2f4fe]  absolute top-[21px] left-[1px] ${errors.amount && touched.amount ? "bg-red-600 text-white": ""} focus:bg-[#d8da2d]`} tabIndex={0}><MdOutlineCurrencyPound className={`absolute top-3 left-2 text-[16px] PlusJakartaSans-Bold text-[#5a6e77] ${errors.amount && touched.amount ? "text-white":""}`} />
                     </div>
 
                   </div>
                   <div className='w-full block sm:flex sm:gap-5  '>
                     <div className='mt-5 relative'>
                       <p className='text-[#7d8c90] text-sm my-2 PlusJakartaSans-Medium'>Mortgage Term</p>
-                      <div className='w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1 focus-within:border-[#d8da2d]'>
+                      <div className={`w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1 ${errors.mortgage_term && touched.mortgage_term ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
                         <input type="text" name='mortgage_term' value={values.mortgage_term} onChange={handleChange
                         } className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
 
 
                       </div>
                       {errors.mortgage_term && touched.mortgage_term ? (<p className='text-red-600'>{errors.mortgage_term}</p>) : null}
-                      <div className='w-[65px] h-[42px] bg-[#e2f4fe] absolute top-[30px] sm:top-[37px] right-[2px]'><span className='absolute top-2 left-3 text-[16px] PlusJakartaSans-Bold text-[#5a6e77]'> years</span></div>
+                      <div className={`w-[65px] h-[43px] bg-[#e2f4fe] absolute top-[29px] sm:top-[37px] right-[1px]  ${errors.mortgage_term && touched.mortgage_term ? "bg-red-600 text-white": ""} focus:bg-[#d8da2d]`}><span className={`absolute top-2 left-3 text-[16px] PlusJakartaSans-Bold text-[#5a6e77] ${errors.mortgage_term && touched.mortgage_term ? "text-white" : ""}`}> years</span></div>
                     </div>
 
                     <div className='mt-5 relative'>
                       <p className='text-[#7d8c90] my-2 PlusJakartaSans-Medium text-sm'>Interest Rate</p>
-                      <div className='w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1 focus-within:border-[#d8da2d]'>
+                      <div className={`w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1  ${errors.interest_rate && touched.interest_rate ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
                         <input type="text" name='interest_rate' value={values.interest_rate} onChange={handleChange} className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
 
 
                       </div>
                       {errors.interest_rate && touched.interest_rate ? (<p className='text-red-600'>{errors.interest_rate}</p>) : null}
-                      <div className='w-[39px] h-[42px] bg-[#e2f4fe] absolute top-[30px] sm:top-[37px] right-[2px]'><MdPercent className='absolute top-3 left-2 text-[16px] PlusJakartaSans-Bold text-[#5a6e77]' /></div>
+                      <div className={`w-[39px] h-[43px] bg-[#e2f4fe] absolute top-[29px] sm:top-[37px] right-[1px] ${errors.interest_rate && touched.interest_rate ? 'bg-red-600' : ''}`}><MdPercent className={`absolute top-3 left-2 text-[16px] PlusJakartaSans-Bold text-[#5a6e77] ${errors.interest_rate && touched.interest_rate ? "text-white" : ""}`} /></div>
                     </div>
                   </div>
 
@@ -97,8 +97,8 @@ function App() {
 
                     <div>
                       <div className={`w-full border h-[45px] rounded py-1.5 px-5 relative ${values.radio === "Repayments"
-                          ? "border-yellow-500 bg-yellow-100"
-                          : "border-gray-400 bg-white"
+                        ? "border-[#d8da2d] bg-[#fafae0]"
+                        : "border-gray-400 bg-white"
                         }`}>
                         <input
                           type="radio"
@@ -106,8 +106,8 @@ function App() {
                           value="Repayments"
                           checked={values.radio === "Repayments"}
                           onChange={handleChange}
-                          className={`absolute top-4 left-5 cursor-pointer  ${values.radio === "Interest Only" ? "bg-yellow-500" : "bg-gray-300"
-                          }`}
+                          className={`absolute top-4 left-5 cursor-pointer accent-yellow-700  ${values.radio === "Interest Only" ? "bg-[#fafae0]" : "bg-gray-300"
+                            }`}
                         />
                         <span className='absolute top-2 left-12 font-bold text-base PlusJakartaSans-Bold text-[#182c37]'>
                           Repayments
@@ -117,8 +117,8 @@ function App() {
 
                     <div>
                       <div className={`w-full border h-[45px] rounded py-1.5 px-5 relative ${values.radio === "Interest Only"
-                          ? "border-yellow-500 bg-yellow-100"
-                          : "border-gray-400 bg-white"
+                        ? "border-[#d8da2d] bg-[#fafae0]"
+                        : "border-gray-400 bg-white"
                         }`}>
                         <input
                           type="radio"
@@ -127,10 +127,10 @@ function App() {
                           checked={values.radio === "Interest Only"}
                           onChange={handleChange}
                           // className='absolute top-4 cursor-pointer'
-                          className={`absolute top-4 left-5 cursor-pointer  ${values.radio === "Interest Only" ? "bg-yellow-500" : "bg-gray-300"
+                          className={`absolute top-4 left-5 cursor-pointer accent-yellow-700 ${values.radio === "Interest Only" ? "bg-yellow-500" : "bg-gray-300"
                             }`}
                         />
-                        <span className='absolute top-2 left-12 font-bold text-base PlusJakartaSans-Bold text-[#182c37]'>
+                        <span className='absolute top-2 left-12 font-bold text-base PlusJakartaSans-Bold text-[#182c37] '>
                           Interest Only
                         </span>
                       </div>
@@ -141,7 +141,7 @@ function App() {
                   </div>
 
                   <div className='relative sm:px-3'>
-                    <button className=' w-full sm:w-[300px] bg-[#dbd92f] py-3 sm:py-2 text-sm sm:text-base font-bold rounded-full mt-4  cursor-pointer PlusJakartaSans-Bold text-[#182c37]'>Calculate Repayments</button>
+                    <button type='submit' className=' w-full sm:w-[300px] bg-[#dbd92f] py-3 sm:py-2 text-sm sm:text-base font-bold rounded-full mt-4  cursor-pointer PlusJakartaSans-Bold text-[#182c37]'>Calculate Repayments</button>
                     <img src={calculator} alt="calculator" className='absolute top-7 sm:top-6 left-6 sm:left-10 w-5 sm:w-6' />
                   </div>
                 </form>
