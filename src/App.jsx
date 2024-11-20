@@ -56,7 +56,7 @@ function App() {
                   <div className='space-y-2 mt-5 relative '>
                     <p className='text-[#7d8c90] text-sm PlusJakartaSans-Medium'>Mortgage Amount</p>
                     <div className={`w-full border border-[#9eabb1] h-[45px] rounded py-1.5 px-5  ${errors.amount && touched.amount ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
-                      <input type="text" name='amount' value={values.amount} onChange={handleChange} className='absolute top-8 w-[210px] sm:w-auto outline-none rounded py-1 px-8 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                      <input type="text" name='amount' value={values.amount} onChange={handleChange} className='absolute top-8 w-[210px] sm:w-[180px] outline-none rounded py-1 px-8 PlusJakartaSans-Bold text-lg text-[#25323a]' />
 
                       {/* value={formatNumberWithCommas(value)} */}
                     </div>
@@ -70,9 +70,9 @@ function App() {
                   <div className='w-full block sm:flex sm:gap-5  '>
                     <div className='mt-5 relative'>
                       <p className='text-[#7d8c90] text-sm my-2 PlusJakartaSans-Medium'>Mortgage Term</p>
-                      <div className={`w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1 ${errors.mortgage_term && touched.mortgage_term ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
+                      <div className={`w-full sm:w-[130px] md:w-[161px]  lg:w-[226px] xl:w-[290px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1 ${errors.mortgage_term && touched.mortgage_term ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
                         <input type="text" name='mortgage_term' value={values.mortgage_term} onChange={handleChange
-                        } className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                        } className='absolute top-8 sm:top-10 w-[150px] sm:w-[100px]  md:w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
 
 
                       </div>
@@ -82,8 +82,8 @@ function App() {
 
                     <div className='mt-5 relative'>
                       <p className='text-[#7d8c90] my-2 PlusJakartaSans-Medium text-sm'>Interest Rate</p>
-                      <div className={`w-full sm:w-[289px] border border-[#9eabb1] h-[45px] rounded py-1.5 px-1  ${errors.interest_rate && touched.interest_rate ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
-                        <input type="text" name='interest_rate' value={values.interest_rate} onChange={handleChange} className='absolute top-8 sm:top-10 w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
+                      <div className={`w-full sm:w-[130px] md:w-[161px] lg:w-[226px] xl:w-[290px]  border border-[#9eabb1] h-[45px] rounded py-1.5 px-1  ${errors.interest_rate && touched.interest_rate ? 'border-[#e1ada9]' : 'focus-within:border-[#d8da2d]'}`}>
+                        <input type="text" name='interest_rate' value={values.interest_rate} onChange={handleChange} className='absolute top-8 sm:top-10 w-[150px] sm:w-[100px] md:w-[150px] outline-none rounded py-1 px-4 PlusJakartaSans-Bold text-lg text-[#25323a]' />
 
 
                       </div>
